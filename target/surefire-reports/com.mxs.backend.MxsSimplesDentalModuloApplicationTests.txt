@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.mxs.backend.MxsSimplesDentalModuloApplicationTests
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 4.564 s - in com.mxs.backend.MxsSimplesDentalModuloApplicationTests

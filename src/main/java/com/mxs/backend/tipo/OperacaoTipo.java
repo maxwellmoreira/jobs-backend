@@ -1,0 +1,10 @@
+package com.mxs.backend.tipo;
+
+public enum OperacaoTipo {
+    CRIAR_PROFISSIONAL,
+    ATUALIZAR_PROFISSIONAL,
+    EXCLUIR_PROFISSIONAL,
+    CRIAR_CONTATO,
+    ATUALIZAR_CONTATO,
+    EXCLUIR_CONTATO
+}
