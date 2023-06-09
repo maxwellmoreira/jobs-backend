@@ -31,7 +31,7 @@ public class ContatoIncluirFuncao {
 
         var profissionalModelo = this.profissionalFachada.obterProfissionalPorCodigo(contatoControladorCriarRequisicao.codigoProfissional());
 
-        var contatoModelo = this.contatoConversor.controladorCriarRequisicaoParaModelo(contatoControladorCriarRequisicao, profissionalModelo);
+        var contatoModelo = this.contatoConversor.controladorCriarRequisicaoEModeloParaModelo(contatoControladorCriarRequisicao, profissionalModelo);
 
         var codigoContato = this.contatoRepositorio.save(contatoModelo).getCodigo();
 

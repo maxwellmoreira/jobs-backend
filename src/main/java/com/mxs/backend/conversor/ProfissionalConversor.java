@@ -2,6 +2,7 @@ package com.mxs.backend.conversor;
 
 import com.mxs.backend.modelo.ProfissionalModelo;
 import com.mxs.backend.requisicao.ProfissionalControladorAtualizarRequisicao;
+import com.mxs.backend.requisicao.ProfissionalControladorCriarRequisicao;
 import com.mxs.backend.resposta.ProfissionalControladorObterResposta;
 import com.mxs.backend.tipo.CargoTipo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,15 @@ public class ProfissionalConversor {
     @Autowired
     private ContatoConversor contatoConversor;
 
+    public ProfissionalModelo controladorCriarRequisicaoParaModelo(ProfissionalControladorCriarRequisicao profissionalControladorCriarRequisicao) {
+        return ProfissionalModelo
+                .builder()
+                .nome(profissionalControladorCriarRequisicao.nome())
+                .nascimento(LocalDate.parse(profissionalControladorCriarRequisicao.nascimento()))
+                .cargoTipo(CargoTipo.valueOf(profissionalControladorCriarRequisicao.cargo()))
+                .build();
+    }
+
     public List<ProfissionalControladorObterResposta> modeloListaParaControladorObterRespostaLista(List<ProfissionalModelo> modeloLista) {
         return modeloLista.stream().map(this::modeloParaControladorObterResposta).collect(Collectors.toList());
     }
@@ -35,12 +45,12 @@ public class ProfissionalConversor {
                 .build();
     }
 
-    public ProfissionalModelo modeloParaControladorAtualizarRequisicao(ProfissionalControladorAtualizarRequisicao profissionalControladorAtualizarRequisicao,
+    public ProfissionalModelo controladorAtualizarRequisicaoEModeloParaModelo(ProfissionalControladorAtualizarRequisicao profissionalControladorAtualizarRequisicao,
                                                                        ProfissionalModelo profissionalEncontradaNoBanco) {
-        ProfissionalModelo modelo = profissionalEncontradaNoBanco;
-        modelo.setNome(profissionalControladorAtualizarRequisicao.nome());
-        modelo.setNascimento(LocalDate.parse(profissionalControladorAtualizarRequisicao.nascimento()));
-        modelo.setCargoTipo(CargoTipo.valueOf(profissionalControladorAtualizarRequisicao.cargo()));
-        return modelo;
+        ProfissionalModelo profissionalModelo = profissionalEncontradaNoBanco;
+        profissionalModelo.setNome(profissionalControladorAtualizarRequisicao.nome());
+        profissionalModelo.setNascimento(LocalDate.parse(profissionalControladorAtualizarRequisicao.nascimento()));
+        profissionalModelo.setCargoTipo(CargoTipo.valueOf(profissionalControladorAtualizarRequisicao.cargo()));
+        return profissionalModelo;
     }
 }

@@ -38,7 +38,7 @@ public class ContatoConversor {
                 .build();
     }
 
-    public ContatoModelo controladorCriarRequisicaoParaModelo(
+    public ContatoModelo controladorCriarRequisicaoEModeloParaModelo(
             ContatoControladorCriarRequisicao contatoControladorCriarRequisicao, ProfissionalModelo profissionalModelo) {
         return ContatoModelo
                 .builder()

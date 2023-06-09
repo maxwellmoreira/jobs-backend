@@ -35,7 +35,8 @@ public class ProfissionalAtualizarFuncao {
                         .orElseThrow(() -> new NaoEncontradoExcecao(PROFISSIONAL_NAO_ENCONTRADO));
 
         var profissionalModelo =
-                this.profissionalConversor.modeloParaControladorAtualizarRequisicao(profissionalControladorAtualizarRequisicao, profissionalEncontradoNoBanco);
+                this.profissionalConversor.controladorAtualizarRequisicaoEModeloParaModelo(
+                        profissionalControladorAtualizarRequisicao, profissionalEncontradoNoBanco);
 
         var codigoProfissional = this.profissionalRepositorio.save(profissionalModelo).getCodigo();
 

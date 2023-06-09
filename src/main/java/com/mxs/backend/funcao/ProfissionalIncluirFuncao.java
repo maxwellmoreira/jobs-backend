@@ -1,15 +1,11 @@
 package com.mxs.backend.funcao;
 
-import com.mxs.backend.conversor.ContatoConversor;
-import com.mxs.backend.modelo.ProfissionalModelo;
+import com.mxs.backend.conversor.ProfissionalConversor;
 import com.mxs.backend.repositorio.ProfissionalRepositorio;
 import com.mxs.backend.requisicao.ProfissionalControladorCriarRequisicao;
 import com.mxs.backend.resposta.ProfissionalControladorCriarResposta;
-import com.mxs.backend.tipo.CargoTipo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDate;
 
 /**
  * Classe responsável pelo caso de uso de inclusão da entidade Profissional.
@@ -18,7 +14,7 @@ import java.time.LocalDate;
 public class ProfissionalIncluirFuncao {
 
     @Autowired
-    private ContatoConversor contatoConversor;
+    private ProfissionalConversor profissionalConversor;
     @Autowired
     private ProfissionalRepositorio profissionalRepositorio;
 
@@ -31,12 +27,7 @@ public class ProfissionalIncluirFuncao {
     public ProfissionalControladorCriarResposta criarProfissional(ProfissionalControladorCriarRequisicao profissionalControladorCriarRequisicao) {
 
         var profissionalModelo =
-                ProfissionalModelo
-                        .builder()
-                        .nome(profissionalControladorCriarRequisicao.nome())
-                        .nascimento(LocalDate.parse(profissionalControladorCriarRequisicao.nascimento()))
-                        .cargoTipo(CargoTipo.valueOf(profissionalControladorCriarRequisicao.cargo()))
-                        .build();
+                this.profissionalConversor.controladorCriarRequisicaoParaModelo(profissionalControladorCriarRequisicao);
 
         var codigoProfissional = this.profissionalRepositorio.save(profissionalModelo).getCodigo();
 
